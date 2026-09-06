@@ -1,0 +1,33 @@
+domain: av_scenario_competitors
+entity_label: "Registry đối thủ production trong scenario simulation AV"
+
+schema:
+  type_field: record_type
+  fields:
+    - record_type
+    - product_position
+    - production_or_maturity_signal
+    - scenario_workflow
+    - validation_or_scale
+    - evidence_interpretation
+
+rollup_field: evidence_interpretation
+
+universe:
+  estimate: 4
+  basis: "Shortlist gồm 4 nền tảng AV simulation/V&V lớn được chọn để so sánh workflow Scenario Forge ngày 2026-09-05; không đại diện toàn bộ thị trường."
+
+refresh_days:
+  default: 90
+
+alias_map: {}
+ambiguous_clusters: []
+
+domain_gates:
+  required_fields:
+    competitor_product:
+      - product_position
+      - production_or_maturity_signal
+      - scenario_workflow
+      - validation_or_scale
+      - evidence_interpretation

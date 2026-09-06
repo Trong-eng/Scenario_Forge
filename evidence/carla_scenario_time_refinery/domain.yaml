@@ -1,0 +1,32 @@
+domain: carla_scenario_time
+entity_label: "Bằng chứng thời gian tạo và kiểm thử kịch bản mô phỏng AV"
+
+schema:
+  type_field: record_type
+  fields:
+    - record_type
+    - platform_context
+    - workflow_stage
+    - time_observation
+    - evidence_class
+    - source_scope
+
+rollup_field: evidence_class
+
+universe:
+  estimate: 6
+  basis: "Danh sách 6 nguồn trực tiếp hoặc gần trực tiếp được chọn từ lượt tìm kiếm công khai ngày 2026-09-05; không phải tổng quan hệ thống toàn bộ tài liệu."
+
+refresh_days:
+  default: 180
+
+alias_map: {}
+ambiguous_clusters: []
+
+domain_gates:
+  required_fields:
+    evidence_record:
+      - platform_context
+      - workflow_stage
+      - evidence_class
+      - source_scope

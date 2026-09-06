@@ -1,0 +1,7 @@
+ScenarioGen
+
+Modern autonomous-vehicle (AV) systems must be tested against rare, safety-critical edge cases. Designing such scenarios in a simulator is slow and demands deep API expertise. This project presents an end-to-end pipeline that converts plain-English descriptions of adversarial driving scenarios into validated, ready-to-run CARLA simulator configurations. A schema-aware retry-with-validation loop guarantees that every emitted JSON is structurally correct before reaching the simulator, turning hours of manual scenario authoring into seconds of natural-language prompting.
+
+The pipeline lets a safety engineer describe a scenario in two sentences of English and get a runnable CARLA episode in seconds rather than hours.
+
+The catch is that authoring an interesting scenario in CARLA is itself a research engineering task. The author must pick a map, choose a spawn point for the ego vehicle, instantiate one or more adversaries, assign each adversary a behavior, tune the trigger conditions, set the weather, and decide which sensors to attach. None of this is in itself difficult, but it requires deep familiarity with the API and a long list of named constants. A safety engineer who can describe a scenario in two English sentences ends up needing two hundred lines of Python and several rounds of trial-and-error in the simulator window.

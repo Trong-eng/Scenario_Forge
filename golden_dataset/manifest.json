@@ -1,0 +1,11 @@
+{
+  "dataset_version": "sf007.nhtsa-golden.v1",
+  "expected_case_count": 108,
+  "expected_class_count": 36,
+  "lenses": [
+    "canonical",
+    "paraphrase",
+    "incomplete"
+  ],
+  "source_sha256": "3138095486cd8dda2f3fa2d443972e2ffd0c45129370afd6852d833d5e69ed59"
+}

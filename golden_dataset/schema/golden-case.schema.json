@@ -1,0 +1,406 @@
+{
+  "$defs": {
+    "ExpectedOutcome": {
+      "description": "Closed evaluator outcomes permitted by the approved dataset design.",
+      "enum": [
+        "SEMANTIC_READY",
+        "CLARIFICATION_REQUIRED",
+        "EXPECTED_UNSUPPORTED"
+      ],
+      "title": "ExpectedOutcome",
+      "type": "string"
+    },
+    "ExpectedPipeline": {
+      "additionalProperties": false,
+      "description": "Expected fail-closed pipeline disposition for one golden case.",
+      "properties": {
+        "clarification_field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Clarification Field"
+        },
+        "decision_stage": {
+          "minLength": 1,
+          "title": "Decision Stage",
+          "type": "string"
+        },
+        "error_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Error Code"
+        },
+        "failure_class": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Failure Class"
+        },
+        "forbidden_tools": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Forbidden Tools",
+          "type": "array"
+        },
+        "outcome": {
+          "$ref": "#/$defs/ExpectedOutcome"
+        },
+        "required_tools": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Required Tools",
+          "type": "array"
+        },
+        "terminal_status": {
+          "minLength": 1,
+          "title": "Terminal Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "outcome",
+        "decision_stage",
+        "terminal_status",
+        "failure_class",
+        "error_code",
+        "clarification_field",
+        "required_tools",
+        "forbidden_tools"
+      ],
+      "title": "ExpectedPipeline",
+      "type": "object"
+    },
+    "GoldenLens": {
+      "description": "The three required representations for each NHTSA scenario class.",
+      "enum": [
+        "canonical",
+        "paraphrase",
+        "incomplete"
+      ],
+      "title": "GoldenLens",
+      "type": "string"
+    },
+    "GoldenOracle": {
+      "additionalProperties": false,
+      "description": "Deterministic semantic expectations for one golden case.",
+      "properties": {
+        "equivalent_to_case_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Equivalent To Case Id"
+        },
+        "expected_actors": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Expected Actors",
+          "type": "array"
+        },
+        "expected_constraints": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "minProperties": 1,
+          "title": "Expected Constraints",
+          "type": "object"
+        },
+        "expected_environment": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "minProperties": 1,
+          "title": "Expected Environment",
+          "type": "object"
+        },
+        "expected_family": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Expected Family"
+        },
+        "expected_maneuvers": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Expected Maneuvers",
+          "type": "array"
+        },
+        "forbidden_claims": {
+          "items": {
+            "$ref": "#/$defs/OracleClaim"
+          },
+          "title": "Forbidden Claims",
+          "type": "array"
+        },
+        "omitted_field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Omitted Field"
+        },
+        "required_claims": {
+          "items": {
+            "$ref": "#/$defs/OracleClaim"
+          },
+          "minItems": 1,
+          "title": "Required Claims",
+          "type": "array"
+        },
+        "semantic_intent": {
+          "minLength": 1,
+          "title": "Semantic Intent",
+          "type": "string"
+        }
+      },
+      "required": [
+        "semantic_intent",
+        "required_claims",
+        "forbidden_claims",
+        "expected_actors",
+        "expected_maneuvers",
+        "expected_environment",
+        "expected_constraints",
+        "expected_family",
+        "equivalent_to_case_id",
+        "omitted_field"
+      ],
+      "title": "GoldenOracle",
+      "type": "object"
+    },
+    "GoldenProvenance": {
+      "additionalProperties": false,
+      "description": "Required NHTSA source and human-review evidence.",
+      "properties": {
+        "author": {
+          "minLength": 1,
+          "title": "Author",
+          "type": "string"
+        },
+        "compiler_review": {
+          "minLength": 1,
+          "title": "Compiler Review",
+          "type": "string"
+        },
+        "report_number": {
+          "const": "DOT HS 812 745",
+          "title": "Report Number",
+          "type": "string"
+        },
+        "report_page": {
+          "minimum": 1,
+          "title": "Report Page",
+          "type": "integer"
+        },
+        "source_sha256": {
+          "const": "3138095486cd8dda2f3fa2d443972e2ffd0c45129370afd6852d833d5e69ed59",
+          "title": "Source Sha256",
+          "type": "string"
+        },
+        "taxonomy_review": {
+          "minLength": 1,
+          "title": "Taxonomy Review",
+          "type": "string"
+        }
+      },
+      "required": [
+        "report_number",
+        "report_page",
+        "source_sha256",
+        "author",
+        "taxonomy_review",
+        "compiler_review"
+      ],
+      "title": "GoldenProvenance",
+      "type": "object"
+    },
+    "NhtsaAnchor": {
+      "additionalProperties": false,
+      "description": "The three NHTSA taxonomy anchors for a scenario class.",
+      "properties": {
+        "accident_type": {
+          "minLength": 1,
+          "title": "Accident Type",
+          "type": "string"
+        },
+        "critical_event": {
+          "minLength": 1,
+          "title": "Critical Event",
+          "type": "string"
+        },
+        "pre_event_movement": {
+          "minLength": 1,
+          "title": "Pre Event Movement",
+          "type": "string"
+        }
+      },
+      "required": [
+        "pre_event_movement",
+        "critical_event",
+        "accident_type"
+      ],
+      "title": "NhtsaAnchor",
+      "type": "object"
+    },
+    "OracleClaim": {
+      "additionalProperties": false,
+      "description": "One deterministic semantic assertion for a golden case.",
+      "properties": {
+        "object": {
+          "minLength": 1,
+          "title": "Object",
+          "type": "string"
+        },
+        "predicate": {
+          "minLength": 1,
+          "title": "Predicate",
+          "type": "string"
+        },
+        "subject": {
+          "minLength": 1,
+          "title": "Subject",
+          "type": "string"
+        }
+      },
+      "required": [
+        "subject",
+        "predicate",
+        "object"
+      ],
+      "title": "OracleClaim",
+      "type": "object"
+    },
+    "ScenarioClassRef": {
+      "additionalProperties": false,
+      "description": "Stable identity of one NHTSA pre-crash scenario class.",
+      "properties": {
+        "scenario_id": {
+          "maximum": 36,
+          "minimum": 1,
+          "title": "Scenario Id",
+          "type": "integer"
+        },
+        "scenario_name": {
+          "minLength": 1,
+          "title": "Scenario Name",
+          "type": "string"
+        },
+        "scenario_slug": {
+          "minLength": 1,
+          "title": "Scenario Slug",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scenario_id",
+        "scenario_slug",
+        "scenario_name"
+      ],
+      "title": "ScenarioClassRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One immutable, offline-only NHTSA semantic evaluation case.",
+  "properties": {
+    "case_id": {
+      "minLength": 1,
+      "title": "Case Id",
+      "type": "string"
+    },
+    "challenge_dimensions": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Challenge Dimensions",
+      "type": "array"
+    },
+    "class_ref": {
+      "$ref": "#/$defs/ScenarioClassRef"
+    },
+    "expected_pipeline": {
+      "$ref": "#/$defs/ExpectedPipeline"
+    },
+    "language": {
+      "enum": [
+        "vi",
+        "en"
+      ],
+      "title": "Language",
+      "type": "string"
+    },
+    "lens": {
+      "$ref": "#/$defs/GoldenLens"
+    },
+    "nhtsa_anchor": {
+      "$ref": "#/$defs/NhtsaAnchor"
+    },
+    "oracle": {
+      "$ref": "#/$defs/GoldenOracle"
+    },
+    "prompt": {
+      "minLength": 1,
+      "title": "Prompt",
+      "type": "string"
+    },
+    "provenance": {
+      "$ref": "#/$defs/GoldenProvenance"
+    },
+    "schema_version": {
+      "const": "sf007.golden-case.v1",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "class_ref",
+    "lens",
+    "language",
+    "prompt",
+    "challenge_dimensions",
+    "nhtsa_anchor",
+    "oracle",
+    "expected_pipeline",
+    "provenance"
+  ],
+  "title": "GoldenCase",
+  "type": "object"
+}

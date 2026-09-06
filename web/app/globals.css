@@ -1,0 +1,554 @@
+@import "tailwindcss";
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-grounded: var(--grounded);
+  --color-grounded-foreground: var(--grounded-foreground);
+  --color-userset: var(--userset);
+  --color-userset-foreground: var(--userset-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-chart-3: var(--chart-3);
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --shadow-panel: 0 1px 2px var(--shadow-tint-weak), 0 12px 32px -18px var(--shadow-tint);
+  --shadow-float: 0 18px 48px -22px var(--shadow-tint-strong);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.976 0.008 84);
+  --foreground: oklch(0.26 0.021 55);
+  --surface: oklch(0.962 0.013 82);
+  --surface-strong: oklch(0.934 0.019 80);
+  --card: oklch(0.995 0.004 84);
+  --card-foreground: oklch(0.26 0.021 55);
+  --primary: oklch(0.53 0.132 39);
+  --primary-foreground: oklch(0.985 0.008 84);
+  --muted: oklch(0.948 0.012 82);
+  --muted-foreground: oklch(0.48 0.024 62);
+  --accent: oklch(0.925 0.028 74);
+  --accent-foreground: oklch(0.33 0.04 45);
+  --destructive: oklch(0.552 0.185 26);
+  --success: oklch(0.895 0.05 150);
+  --success-foreground: oklch(0.36 0.09 152);
+  --warning: oklch(0.912 0.07 85);
+  --warning-foreground: oklch(0.4 0.1 65);
+  --grounded: oklch(0.9 0.05 150);
+  --grounded-foreground: oklch(0.36 0.09 152);
+  --userset: oklch(0.915 0.043 60);
+  --userset-foreground: oklch(0.4 0.11 45);
+  --border: oklch(0.898 0.014 78);
+  --input: oklch(0.86 0.018 76);
+  --ring: oklch(0.53 0.132 39);
+  --chart-3: oklch(0.62 0.1 240);
+  --sidebar: oklch(0.955 0.016 80);
+  --sidebar-foreground: oklch(0.3 0.024 55);
+  --sidebar-accent: oklch(0.918 0.026 74);
+  --sidebar-accent-foreground: oklch(0.3 0.035 48);
+  --sidebar-border: oklch(0.892 0.016 78);
+  --shadow-tint-weak: oklch(0.3 0.04 60 / 0.05);
+  --shadow-tint: oklch(0.3 0.04 60 / 0.22);
+  --shadow-tint-strong: oklch(0.3 0.04 60 / 0.35);
+
+  /* Two independent scales. `--ui-scale` drives the root font size, so every
+     rem-based Tailwind utility -- padding, gap, min-height, radius -- follows
+     the density choice. `--font-scale` is applied to text sizes only, which
+     are written as px literals throughout this codebase. Keeping them apart
+     means text size and density can be chosen separately, the way they are in
+     every editor the reviewers already use. */
+  --ui-scale: 1;
+  --font-scale: 1;
+}
+
+:root[data-density="compact"] { --ui-scale: 0.92; }
+:root[data-font-scale="sm"] { --font-scale: 0.9285; }
+:root[data-font-scale="lg"] { --font-scale: 1.0715; }
+
+/* The dark palette keeps the warm hues of the light one and moves lightness,
+   so the product still reads as the same product after dark. Every value here
+   overrides a token already declared above -- no component needs a dark
+   variant of its own. */
+:root[data-theme="dark"] {
+  --background: oklch(0.196 0.011 62);
+  --foreground: oklch(0.935 0.011 84);
+  --surface: oklch(0.232 0.014 64);
+  --surface-strong: oklch(0.283 0.018 64);
+  --card: oklch(0.222 0.013 64);
+  --card-foreground: oklch(0.935 0.011 84);
+  --primary: oklch(0.672 0.128 42);
+  --primary-foreground: oklch(0.17 0.02 48);
+  --muted: oklch(0.252 0.014 64);
+  --muted-foreground: oklch(0.706 0.018 72);
+  --accent: oklch(0.315 0.031 70);
+  --accent-foreground: oklch(0.905 0.03 78);
+  --destructive: oklch(0.682 0.163 26);
+  --success: oklch(0.318 0.058 152);
+  --success-foreground: oklch(0.858 0.088 150);
+  --warning: oklch(0.338 0.068 82);
+  --warning-foreground: oklch(0.884 0.098 88);
+  --grounded: oklch(0.318 0.058 152);
+  --grounded-foreground: oklch(0.858 0.088 150);
+  --userset: oklch(0.335 0.062 56);
+  --userset-foreground: oklch(0.888 0.078 60);
+  --border: oklch(0.318 0.014 66);
+  --input: oklch(0.372 0.017 66);
+  --ring: oklch(0.672 0.128 42);
+  --chart-3: oklch(0.702 0.108 240);
+  --sidebar: oklch(0.212 0.013 64);
+  --sidebar-foreground: oklch(0.888 0.013 78);
+  --sidebar-accent: oklch(0.282 0.026 70);
+  --sidebar-accent-foreground: oklch(0.915 0.03 76);
+  --shadow-tint-weak: oklch(0.06 0.01 60 / 0.4);
+  --shadow-tint: oklch(0.06 0.01 60 / 0.55);
+  --shadow-tint-strong: oklch(0.04 0.01 60 / 0.7);
+}
+
+* {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html {
+  font-size: calc(16px * var(--ui-scale));
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+html:has(.forge-root),
+body:has(.forge-root) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: calc(14px * var(--font-scale));
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+::selection {
+  background-color: var(--accent);
+}
+
+:where(button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.chat-composer-input:focus-visible {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.panel-surface {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow-panel);
+}
+
+.label-caps {
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.icon-button {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--muted-foreground);
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.icon-button:hover {
+  background-color: var(--surface);
+  color: var(--foreground);
+}
+
+.icon-button:active {
+  transform: scale(0.96);
+}
+
+.control-button {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid var(--input);
+  border-radius: 0.5rem;
+  background-color: transparent;
+  padding: 0.375rem 0.75rem;
+  color: var(--muted-foreground);
+  font-size: 0.78125rem;
+  font-weight: 500;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.control-button:hover {
+  border-color: color-mix(in oklab, var(--primary) 40%, var(--input));
+  background-color: var(--surface);
+  color: var(--foreground);
+}
+
+.status-toast {
+  position: fixed;
+  z-index: 60;
+  right: 1rem;
+  bottom: 1rem;
+  max-width: min(28rem, calc(100vw - 2rem));
+  border: 1px solid var(--border);
+  border-radius: 0.625rem;
+  background: color-mix(in oklab, var(--card) 96%, transparent);
+  box-shadow: 0 8px 28px -14px var(--shadow-tint);
+  color: var(--foreground);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.75rem;
+  pointer-events: none;
+}
+
+.scroll-slim {
+  scrollbar-color: var(--surface-strong) transparent;
+  scrollbar-width: thin;
+}
+
+.scroll-pane {
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.forge-main {
+  grid-template-columns: minmax(20rem, 1fr) clamp(24rem, 29vw, 36rem) 24rem;
+  grid-template-rows: minmax(0, 1fr);
+  transition: grid-template-columns 360ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Progressive disclosure.
+   The workspace opens as a single composer, because an IR editor and a run
+   inspector have nothing to say before a Definition exists. Each pane joins the
+   grid as the work reaches it, so the operator is never handed three empty
+   columns to interpret. */
+
+.forge-panel-reveal {
+  animation: forge-panel-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes forge-panel-in {
+  from { opacity: 0; transform: translateX(12px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-panel-reveal { animation: none; }
+  .forge-main { transition: none; }
+}
+
+.forge-main[data-inspector-open="false"] {
+  grid-template-columns: minmax(20rem, 4fr) minmax(24rem, 5fr);
+}
+
+.forge-main[data-stage="intake"] {
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  margin-inline: 0;
+}
+
+[data-agent-reading-rail] {
+  max-width: 48rem;
+  /* ChatGPT-like reading hierarchy: prose stays fully inked, reasoning is
+     nearly-primary, and only timing/tool metadata recedes. Components consume
+     semantic roles below instead of scattering arbitrary opacity utilities. */
+  --agent-text-primary: var(--foreground);
+  --agent-text-secondary: color-mix(in oklab, var(--foreground) 88%, transparent);
+  --agent-text-meta: color-mix(in oklab, var(--foreground) 76%, transparent);
+  --agent-text-icon: color-mix(in oklab, var(--foreground) 66%, transparent);
+}
+
+.agent-text-primary { color: var(--agent-text-primary); }
+.agent-text-secondary { color: var(--agent-text-secondary); }
+.agent-text-meta { color: var(--agent-text-meta); }
+.agent-text-interactive { color: var(--agent-text-secondary); }
+.agent-activity-icon { color: var(--agent-text-icon); }
+
+.agent-activity-trigger:hover,
+.agent-activity-trigger:focus-visible,
+.agent-activity-trigger:hover .agent-text-interactive,
+.agent-activity-trigger:focus-visible .agent-text-interactive,
+.agent-activity-trigger:hover .agent-activity-icon,
+.agent-activity-trigger:focus-visible .agent-activity-icon {
+  color: var(--agent-text-primary);
+}
+
+.forge-main[data-stage="intake"] [data-agent-reading-rail] {
+  max-width: 55rem;
+}
+
+.forge-panel-slot,
+.forge-inspector-shell {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.forge-sidebar {
+  transition: width 360ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-brand-toggle {
+  border: 0;
+  background: transparent;
+}
+
+.sidebar-brand-mark,
+.sidebar-expand-icon {
+  transition: opacity 160ms ease-out, transform 160ms ease-out;
+}
+
+.sidebar-expand-icon {
+  opacity: 0;
+  transform: scale(0.82);
+}
+
+.sidebar-brand-toggle[data-open="false"]:hover .sidebar-brand-mark,
+.sidebar-brand-toggle[data-open="false"]:focus-visible .sidebar-brand-mark {
+  opacity: 0;
+  transform: scale(0.82);
+}
+
+.sidebar-brand-toggle[data-open="false"]:hover .sidebar-expand-icon,
+.sidebar-brand-toggle[data-open="false"]:focus-visible .sidebar-expand-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scroll-slim::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-slim::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background-color: var(--surface-strong);
+}
+
+@keyframes forge-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.dot-pulse {
+  animation: forge-pulse 1.4s ease-in-out infinite;
+}
+
+@media (max-width: 1400px) {
+  .forge-main {
+    grid-template-columns: minmax(20rem, 1fr) clamp(24rem, 39vw, 32rem);
+  }
+
+  .forge-inspector-shell {
+    position: fixed;
+    z-index: 35;
+    top: 4.25rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    filter: drop-shadow(0 20px 30px oklch(0.3 0.04 60 / 0.18));
+  }
+}
+
+@media (max-width: 955px) {
+  .forge-root {
+    height: 100dvh;
+    min-height: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .forge-sidebar {
+    position: fixed !important;
+    inset: 0 auto 0 0;
+    z-index: 45;
+    width: min(82vw, 264px) !important;
+    box-shadow: var(--shadow-float);
+    transition: transform 360ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .forge-sidebar[data-open="false"] {
+    transform: translateX(-105%);
+    visibility: hidden;
+  }
+
+  .forge-sidebar[data-open="true"] { visibility: visible; }
+
+  .forge-main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  .forge-main[data-inspector-open] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .forge-panel-slot {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .forge-inspector-shell {
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .forge-inspector-shell > aside {
+    width: calc(100vw - 1.5rem);
+  }
+
+  .status-toast {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  .forge-sidebar,
+  .forge-main,
+  .sidebar-brand-mark,
+  .sidebar-expand-icon,
+  .forge-panel-slot,
+  .forge-inspector-shell,
+  [data-modal-layer] > *,
+  .dot-pulse,
+  .motion-reduce\:transform-none {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* One fast, legible highlight crosses the active line, then rests. The active
+   node is isolated from token-render updates, so this animation never restarts
+   while response text is arriving. */
+.agent-activity-shimmer {
+  display: inline-block;
+  color: transparent !important;
+  background-image: linear-gradient(100deg,
+    color-mix(in oklab, var(--color-foreground) 68%, transparent) 0%,
+    color-mix(in oklab, var(--color-foreground) 68%, transparent) 42%,
+    var(--color-foreground) 49%,
+    color-mix(in oklab, var(--color-foreground) 68%, transparent) 56%,
+    color-mix(in oklab, var(--color-foreground) 68%, transparent) 100%);
+  background-position: 125% 0;
+  background-size: 260% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  will-change: background-position;
+  animation: agent-activity-shimmer-sweep 2000ms linear infinite;
+}
+
+@keyframes agent-activity-shimmer-sweep {
+  0% { background-position: 125% 0; }
+  32.5% { background-position: -125% 0; }
+  100% { background-position: -125% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-activity-shimmer {
+    animation: none;
+    background: none;
+    color: inherit !important;
+  }
+}
+
+/* DEMO SURFACE — delete with web/src/features/agent-demo/.
+   A pending step shimmers so an in-flight tool call reads as active rather than
+   stalled; it stops the moment the real result arrives. */
+.shimmer-text {
+  background: linear-gradient(90deg,
+    var(--color-muted-foreground) 0%,
+    var(--color-foreground) 40%,
+    var(--color-muted-foreground) 80%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 1.6s linear infinite;
+}
+
+@keyframes shimmer-sweep {
+  from { background-position: 120% 0; }
+  to { background-position: -20% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-text { animation: none; color: inherit; background: none; }
+}
+
+/* One lever for the whole product, CSS modules included.
+   `data-motion` is already resolved by the pre-paint script: it is "reduce"
+   when the OS asks for it or when the user chose Reduced in Settings, so the
+   media queries above stay correct and this covers the explicit choice. */
+:root[data-motion="reduce"] *,
+:root[data-motion="reduce"] *::before,
+:root[data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

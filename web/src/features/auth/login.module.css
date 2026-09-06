@@ -1,0 +1,888 @@
+/* =========================================================
+   Scenario Forge — Exact 1:1 Claude-Inspired Login UI
+   - Pure warm ivory background (#FAF9F5 / #FFFFFF)
+   - Centered typography + floating white card form
+   - Solid black submit button, subtle Google button & pill actions
+   - Framed right visual canvas with subtle live simulation motion
+   ========================================================= */
+
+.loginContainer {
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  display: flex;
+  background-color: #faf9f5;
+  color: #1f1e1d;
+  font-family: var(--font-plus-jakarta-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  position: relative;
+  overflow: hidden;
+}
+
+/* =========================================================
+   Left Section: Perfectly Centered Claude-Style Login Column
+   ========================================================= */
+.leftSection {
+  flex: 1.15;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 3.5rem;
+  position: relative;
+  z-index: 10;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.leftSection::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .leftSection {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Top-left Brand Logo (Matching Claude's top-left placement) */
+.brandHeader {
+  position: absolute;
+  top: 2.25rem;
+  left: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: #1a1918;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  transition: opacity 0.15s ease;
+}
+
+.brandHeader:hover {
+  opacity: 0.85;
+}
+
+.brandMark {
+  width: 40px;
+  height: 40px;
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .brandHeader {
+    position: static;
+    margin-bottom: 2rem;
+    align-self: flex-start;
+  }
+}
+
+/* Center Content Wrapper */
+.centerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 440px;
+  margin: auto 0;
+  /* Keep the absolute brand clear when taller register/reset forms consume the
+     viewport; the column already scrolls on compact laptop screens. */
+  padding: 3rem 0 1rem;
+}
+
+@media (min-width: 1025px) and (max-width: 1400px) {
+  /* Compact laptops do not have enough horizontal room for the corner wordmark
+     and centered editorial heading on the same line. Keep the recognizable mark
+     and reveal the full wordmark again on mobile and wide desktop. */
+  .brandHeader span:last-child {
+    display: none;
+  }
+}
+
+/* Claude Editorial Headline & Subtitle */
+.title {
+  font-family: 'Newsreader', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 2.65rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #141312;
+  text-align: center;
+  margin-bottom: 0.65rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #55534e;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.feedback {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border-radius: 11px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.feedback svg { margin-top: 0.08rem; flex: 0 0 auto; }
+.feedbackError { background: #fff4f2; border: 1px solid #f5c9c2; color: #9f2f26; }
+.feedbackSuccess { background: #f2f8f3; border: 1px solid #cce2d0; color: #25633a; }
+.feedbackInfo { background: #f6f4ef; border: 1px solid #dfd9cc; color: #5c574e; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   Floating White Card (Exact Claude Authentication Card)
+   ========================================================= */
+.authCard {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #eceae2;
+  border-radius: 24px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .authCard {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* Google SSO Button */
+.googleButton {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0 1.25rem;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1f1e1d;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid #e3e0d8;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.googleButton:hover {
+  background: #faf8f5;
+  border-color: #d5d1c5;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.googleButton:active {
+  transform: translateY(0);
+}
+
+.googleButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.googleIcon {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+/* Divider (Exact Claude "ou" / "hoặc") */
+.divider {
+  text-align: center;
+  margin: 1.15rem 0;
+  font-size: 0.75rem;
+  color: #8e8c85;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Email Input & Submit */
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* A labelled field: the label names the input even after the placeholder is
+   typed over, which a placeholder-only field cannot do. */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* The label starts where the value will be typed and rises onto the border as
+   soon as the field is focused or holds anything. It is one element in both
+   states -- a placeholder swapped for a label would leave a field unnamed to a
+   screen reader for exactly as long as it is empty. */
+.fieldLabel {
+  position: absolute;
+  left: 2.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  padding: 0 0.3rem;
+  background: #ffffff;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #9c988f;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.18s ease;
+}
+
+.inputShell:focus-within .fieldLabel,
+.emailInput:not(:placeholder-shown) ~ .fieldLabel {
+  transform: translate(-1.85rem, -50%) translateY(-1.5rem) scale(0.8);
+  font-weight: 600;
+}
+
+.inputShell:focus-within .fieldLabel {
+  color: #d97736;
+}
+
+.inputShellError .fieldLabel,
+.inputShellError:focus-within .fieldLabel {
+  color: #c2523f;
+}
+
+/* The hint under the value would collide with the resting label, so it waits
+   until the label has moved out of the way. */
+.emailInput::placeholder {
+  color: #9c988f;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.inputShell:focus-within .emailInput::placeholder {
+  opacity: 1;
+}
+
+/* The shell owns the border, focus ring and error state so the leading icon
+   and the reveal button sit inside one continuous control. */
+.inputShell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e3e0d8;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.inputShell:hover {
+  border-color: #d5d1c5;
+}
+
+.inputShell:focus-within {
+  border-color: #d97736;
+  box-shadow: 0 0 0 3px rgba(217, 119, 54, 0.12);
+}
+
+.inputShellError,
+.inputShellError:hover {
+  border-color: #d98b80;
+  background: #fffaf9;
+}
+
+.inputShellError:focus-within {
+  border-color: #c2523f;
+  box-shadow: 0 0 0 3px rgba(194, 82, 63, 0.13);
+}
+
+/* Reset mode resolves the address from the token; it is shown for confirmation,
+   not for editing. */
+.inputShellLocked {
+  background: #f7f5f0;
+  border-color: #e7e3da;
+}
+
+.inputShellLocked:hover {
+  border-color: #e7e3da;
+}
+
+.inputShellLocked .emailInput {
+  color: #6b6760;
+  cursor: default;
+}
+
+.fieldIcon {
+  position: absolute;
+  left: 0.95rem;
+  color: #a9a49a;
+  pointer-events: none;
+  transition: color 0.18s ease;
+}
+
+.inputShell:focus-within .fieldIcon {
+  color: #d97736;
+}
+
+.inputShellError .fieldIcon {
+  color: #c2523f;
+}
+
+.emailInput {
+  width: 100%;
+  height: 48px;
+  padding: 0 1.15rem 0 2.7rem;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  color: #1f1e1d;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.emailInputRevealable {
+  padding-right: 2.9rem;
+}
+
+
+
+.revealButton {
+  position: absolute;
+  right: 0.4rem;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #a9a49a;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.revealButton:hover {
+  background: #f4f1ea;
+  color: #5c574e;
+}
+
+.revealButton:focus-visible {
+  outline: 2px solid rgba(217, 119, 54, 0.45);
+  outline-offset: 1px;
+}
+
+.fieldHint {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: #9a6420;
+  margin: 0.05rem 0 0;
+}
+
+.fieldHint svg {
+  flex: 0 0 auto;
+}
+
+/* Password rules, stated up front rather than only on a failed submit. */
+.requirements {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: -0.15rem 0 0.1rem;
+  padding: 0;
+}
+
+.requirement,
+.requirementMet {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  color: #8e8c85;
+  transition: color 0.18s ease;
+}
+
+.requirementMet {
+  color: #25633a;
+}
+
+.requirementDot {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 1.5px solid #d5d1c5;
+  color: #ffffff;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.requirementMet .requirementDot {
+  background: #3d8b5a;
+  border-color: #3d8b5a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inputShell,
+  .fieldLabel,
+  .emailInput::placeholder,
+  .fieldIcon,
+  .revealButton,
+  .requirement,
+  .requirementMet,
+  .requirementDot {
+    transition: none;
+  }
+}
+
+.demoFillButton {
+  width: 100%;
+  height: 40px;
+  padding: 0 1rem;
+  border-radius: 11px;
+  background: #faf8f5;
+  color: #5c574e;
+  font-size: 0.84rem;
+  font-weight: 600;
+  border: 1px solid #d9d4c9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.demoFillButton:hover {
+  background: #f4efe7;
+  border-color: #c9c1b3;
+  color: #3f3b35;
+}
+
+.demoFillButton:active {
+  transform: translateY(1px);
+}
+
+.demoFillButton:focus-visible {
+  outline: 3px solid rgba(217, 119, 54, 0.2);
+  outline-offset: 2px;
+}
+
+.demoFillButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitEmailButton {
+  width: 100%;
+  height: 48px;
+  padding: 0 1.25rem;
+  border-radius: 12px;
+  background: #141312;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.submitEmailButton:hover {
+  background: #2b2927;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(20, 19, 18, 0.15);
+}
+
+.submitEmailButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Card Bottom Disclaimer */
+.cardDisclaimer {
+  font-size: 0.72rem;
+  color: #8e8c85;
+  text-align: center;
+  margin-top: 1.1rem;
+  line-height: 1.45;
+}
+
+.cardDisclaimer a {
+  color: #63615c;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Under-card secondary pill action (like Claude desktop download pill) */
+.secondaryPill {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid #e3e0d8;
+  color: #403e3a;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.secondaryPill:hover {
+  background: #faf8f5;
+  border-color: #d5d1c5;
+  color: #141312;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================================
+   Right Section: Framed Gallery Artwork (Exact Claude Margin & Border-Radius)
+   ========================================================= */
+.rightSection {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.25rem 2.75rem 2.25rem 0.5rem;
+  background: #faf9f5;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .rightSection {
+    display: none;
+  }
+}
+
+.framedCanvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 4.5rem);
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(220, 210, 195, 0.7);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06);
+  background: #090c10;
+}
+
+/* Ken Burns gentle ambient camera drift */
+.carlaImgWrapper {
+  position: absolute;
+  inset: -3%;
+  width: 106%;
+  height: 106%;
+  animation: cameraBreath 24s ease-in-out infinite alternate;
+}
+
+@keyframes cameraBreath {
+  0% { transform: scale(1) translate(0%, 0%); }
+  50% { transform: scale(1.03) translate(-0.6%, -0.5%); }
+  100% { transform: scale(1.015) translate(0.5%, -0.7%); }
+}
+
+.carlaImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+}
+
+/* Dynamic LiDAR Radar Scan Canvas */
+.lidarRadarCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Top Left Badge: Stream status */
+.carlaBadgeTl {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.85rem;
+  background: rgba(12, 15, 20, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 9999px;
+  font-family: var(--font-jetbrains-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #e0f2fe;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.carlaBadgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22d3ee;
+  flex-shrink: 0;
+  animation: livePulse 1.4s ease-in-out infinite;
+  box-shadow: 0 0 8px #22d3ee;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.75); }
+}
+
+.liveTag {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  padding: 0.08rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Top Right Telemetry HUD */
+.carlaTelemetry {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: rgba(12, 15, 20, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 145px;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.carlaTelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carlaTelLabel {
+  font-family: var(--font-jetbrains-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
+}
+
+.carlaTelValue {
+  font-family: var(--font-jetbrains-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+/* Bottom Quote */
+.carlaQuote {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(to top, rgba(9, 12, 16, 0.85) 0%, rgba(9, 12, 16, 0) 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.carlaQuoteText {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #fffaf0;
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.carlaQuoteCite {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--font-jetbrains-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #fb923c;
+  letter-spacing: 0.05em;
+  font-style: normal;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================================
+   User Profile Badge in Header (When Authenticated)
+   ========================================================= */
+.userBadgeContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.userBadgeButton {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e5e2d9;
+  color: #1f1e1d;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.userBadgeButton:hover {
+  background: #ffffff;
+  border-color: #d5d0c4;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.userAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f0ede4;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 220px;
+  padding: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #e7e3d8;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  animation: fadeIn 0.15s ease;
+}
+
+.dropdownHeader {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #f0ede4;
+  margin-bottom: 0.25rem;
+}
+
+.dropdownUserName {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #141312;
+}
+
+.dropdownUserEmail {
+  font-size: 0.72rem;
+  color: #7a766e;
+  font-family: var(--font-jetbrains-mono, monospace);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #3f3c36;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.dropdownItem:hover {
+  background: #f7f4ed;
+  color: #141312;
+}
+
+.dropdownLogout {
+  color: #dc2626;
+  border-top: 1px solid #f0ede4;
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
+}
+
+.dropdownLogout:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.modeSwitch {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.875rem;
+}
+
+.modeSwitch button {
+  background: none;
+  border: 0;
+  padding: 0.25rem 0;
+  font-size: 0.8125rem;
+  color: #777169;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modeSwitch button:hover {
+  color: #a84f2a;
+  text-decoration: underline;
+}

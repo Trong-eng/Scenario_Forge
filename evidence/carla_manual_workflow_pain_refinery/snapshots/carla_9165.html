@@ -1,0 +1,82 @@
+{
+  "url": "https://api.github.com/repos/carla-simulator/carla/issues/9165",
+  "repository_url": "https://api.github.com/repos/carla-simulator/carla",
+  "labels_url": "https://api.github.com/repos/carla-simulator/carla/issues/9165/labels{/name}",
+  "comments_url": "https://api.github.com/repos/carla-simulator/carla/issues/9165/comments",
+  "events_url": "https://api.github.com/repos/carla-simulator/carla/issues/9165/events",
+  "html_url": "https://github.com/carla-simulator/carla/issues/9165",
+  "id": 3330067071,
+  "node_id": "I_kwDOBnGEqs7GfMp_",
+  "number": 9165,
+  "title": "Digital Twin does not render elevated roads even when OSM overpass/bridge tags exist",
+  "user": {
+    "login": "utsi09",
+    "id": 92018822,
+    "node_id": "U_kgDOBXwYhg",
+    "avatar_url": "https://avatars.githubusercontent.com/u/92018822?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/utsi09",
+    "html_url": "https://github.com/utsi09",
+    "followers_url": "https://api.github.com/users/utsi09/followers",
+    "following_url": "https://api.github.com/users/utsi09/following{/other_user}",
+    "gists_url": "https://api.github.com/users/utsi09/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/utsi09/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/utsi09/subscriptions",
+    "organizations_url": "https://api.github.com/users/utsi09/orgs",
+    "repos_url": "https://api.github.com/users/utsi09/repos",
+    "events_url": "https://api.github.com/users/utsi09/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/utsi09/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "labels": [
+
+  ],
+  "state": "open",
+  "locked": false,
+  "assignees": [
+
+  ],
+  "milestone": null,
+  "comments": 0,
+  "created_at": "2025-08-18T10:06:04Z",
+  "updated_at": "2025-08-18T10:07:48Z",
+  "closed_at": null,
+  "assignee": null,
+  "author_association": "NONE",
+  "issue_field_values": [
+
+  ],
+  "type": null,
+  "active_lock_reason": null,
+  "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+  },
+  "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+  },
+  "body": "Is your feature request related to a problem? Please describe.\nWhen using the Digital Twin functionality in CARLA, elevated roads such as overpasses and bridges are not rendered properly. Even though OSM data contains bridge or overpass tags, the generated maps ignore these attributes and display the roads as if they were on ground level. This reduces realism and limits the usability of the Digital Twin for highway or urban driving scenarios.\n\nDescribe the solution you'd like\nI would like the Digital Twin pipeline to support OSM bridge and overpass tags. Roads marked with these attributes should be rendered as elevated structures in the CARLA map, preserving realistic vertical separation between roads.\n\nDescribe alternatives you've considered\n\nManually editing the generated CARLA map to add bridges/overpasses, which is time-consuming and error-prone.\n\nUsing height or layer=* attributes in OSM, but these also seem to be ignored by the current pipeline.\n\nAdditional context\nThis feature would significantly improve the realism of Digital Twin maps for autonomous driving research. It would allow proper simulation of complex road networks such as highways, interchanges, and urban flyovers.",
+  "closed_by": null,
+  "reactions": {
+    "url": "https://api.github.com/repos/carla-simulator/carla/issues/9165/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+  },
+  "timeline_url": "https://api.github.com/repos/carla-simulator/carla/issues/9165/timeline",
+  "performed_via_github_app": null,
+  "state_reason": null,
+  "pinned_comment": null
+}

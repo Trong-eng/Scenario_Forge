@@ -1,0 +1,33 @@
+domain: carla_manual_workflow_pain
+entity_label: "Lời phàn nàn công khai về thao tác CARLA thủ công"
+
+schema:
+  type_field: record_type
+  fields:
+    - record_type
+    - pain_stage
+    - user_quote
+    - time_or_effort_signal
+    - scenario_forge_fit
+    - source_scope
+
+rollup_field: scenario_forge_fit
+
+universe:
+  estimate: 4
+  basis: "4 GitHub issue công khai được chọn vì có lời phàn nàn trực tiếp về thao tác thủ công và thời gian/effort; không đại diện cho toàn bộ cộng đồng CARLA."
+
+refresh_days:
+  default: 90
+
+alias_map: {}
+ambiguous_clusters: []
+
+domain_gates:
+  required_fields:
+    user_voice:
+      - pain_stage
+      - user_quote
+      - time_or_effort_signal
+      - scenario_forge_fit
+      - source_scope
